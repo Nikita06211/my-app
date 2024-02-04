@@ -1,7 +1,7 @@
-export const Vision = ()=>{
+export const Signup=()=>{
     return(
         <div>
-            Vision
+            Sign-up
         </div>
     )
 }

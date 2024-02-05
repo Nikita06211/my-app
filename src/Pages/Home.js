@@ -1,12 +1,15 @@
 import React from 'react';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FeaturesCarousel } from './Carousel';
 import { Avatar } from '@mui/material';
 
 export const Home = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
     return (
-        <Container maxWidth="lg" style={{ padding: '0', margin: '0' }}>
-            <Grid container spacing={0} style={{ margin: '0', padding: '0' }}>
+        <Container maxWidth="xl" style={{ padding: '0', margin: '0' }}>
+            <Grid container spacing={2} style={{ margin: '0', padding: '0' }}>
                 {/* Image Section */}
                 <Grid item xs={12}>
                     <img
@@ -17,7 +20,7 @@ export const Home = () => {
                 </Grid>
 
                 {/* Text Section */}
-                <Grid item xs={12} container spacing={3} style={{ marginBottom: '2rem' }}>
+                <Grid item xs={12} container spacing={isMobile ? 2 : 3} style={{ marginBottom: '2rem' }}>
                     {/* Centered Heading */}
                     <Grid item xs={12}>
                         <Typography variant="h2" gutterBottom align="center" style={{ color: '#82A80B', fontFamily: 'poppins', textShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)', fontWeight: 'bold' }}>
@@ -27,7 +30,7 @@ export const Home = () => {
 
                     {/* Left Half - Text Definition */}
                     <Grid item xs={12} md={6}>
-                        <Typography variant="h5" align="left" paragraph style={{ display: 'flex', alignItems: 'center', fontFamily: 'Roboto Condensed', fontWeight: '300', marginLeft: '2rem', marginTop: '3rem' }}>
+                        <Typography variant="h5" align={isMobile ? 'center' : 'left'} paragraph style={{ display: 'flex', alignItems: 'center', fontFamily: 'Roboto Condensed', fontWeight: '300', marginLeft: isMobile ? '0' : '2rem', marginTop: isMobile ? '1rem' : '3rem' }}>
                             A carbon footprint is the measure of how much an individual, organization, or activity contributes
                             to climate change by producing greenhouse gases, particularly carbon dioxide. It helps gauge the
                             environmental impact of various actions and choices.
@@ -35,11 +38,11 @@ export const Home = () => {
                     </Grid>
 
                     {/* Right Half - Image */}
-                    <Grid item xs={12} md={6} style={{ backgroundColor: 'white', textAlign: 'right' }}>
+                    <Grid item xs={12} md={6} style={{ backgroundColor: 'white', textAlign: isMobile ? 'center' : 'right' }}>
                         <img
                             src={process.env.PUBLIC_URL + '/Assets/footprint.png'}
                             alt="Footprint Image"
-                            style={{ width: '50%', height: 'auto' }}
+                            style={{ width: isMobile ? '70%' : '50%', height: 'auto', margin: isMobile ? '1rem auto' : '0' }}
                         />
                     </Grid>
                 </Grid>

@@ -11,13 +11,14 @@ const BoxContainer = styled(Paper)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: theme.spacing(2),
+  padding: theme.spacing(1),
   maxHeight: '5.5rem',
   textAlign: 'center',
   cursor: 'pointer',
   marginTop:'5rem',
   marginLeft:'2.5rem',
-  backgroundColor:'#374149'
+  backgroundColor:'#374149',
+  width: '14rem'
 }));
 
 const DashboardBox = () => {

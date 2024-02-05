@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import { Grid} from '@mui/material';
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -18,6 +20,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import SettingsIcon from '@mui/icons-material/Settings';
 import Avatar from '@mui/material/Avatar';
 
 const drawerWidth = 240;
@@ -48,8 +51,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+  background: '#374149', // Set the background color here
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -76,18 +79,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+    background: '#374149', // Set the background color here
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': { ...openedMixin(theme), background: '#374149' }, // Set the background color here
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': { ...closedMixin(theme), background: '#374149' }, // Set the background color here
     }),
   }),
 );
 
-export  function MiniDrawer() {
+export function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -103,7 +107,7 @@ export  function MiniDrawer() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: '#1E272E' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -116,15 +120,29 @@ export  function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            <Avatar/>
-          </Typography>
+          <Grid
+            container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+          >
+            <Avatar />
+          </Grid>
+
+          <Grid container
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="flex-start" >
+            <Button  variant="text" style={{color:'#eeee'}}><SettingsIcon /></Button>
+          </Grid>
+
+
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{ color: '#eeee' }} /> : <ChevronLeftIcon style={{ color: '#eeee' }} />}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -143,6 +161,7 @@ export  function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#eeee'
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -168,6 +187,7 @@ export  function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#eeee'
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

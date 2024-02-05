@@ -4,15 +4,17 @@ import { styled } from '@mui/system';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MiniDrawer } from '../Components/SideNav';
 import DashboardBox from '../Components/DashboardBox';
-// import {DonutChart} from '../Components/Stats1';
-// import {ChallengeProgress} from '../Components/Stats1';
+import { App } from '../Components/Stats1';
+import { ProgressChart } from '../Components/Progress_Ring';
+import { CarbonFootprintBarChart } from '../Components/BarGraph1';
+import { DoubleBarChart } from '../Components/BarGraph2';
 
 const drawerWidth = 60;
 
 const useStyles = styled((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: '#1E272E'
+    backgroundColor: '#1E272E',
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -28,9 +30,11 @@ const useStyles = styled((theme) => ({
     background: '#1976D2',
   },
   content: {
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
     padding: theme.spacing(3),
-    marginTop: theme.mixins.toolbar.minHeight + 16, // Adjust the top margin based on your needs
+    marginTop: theme.mixins.toolbar.minHeight + 16,
   },
   toolbar: theme.mixins.toolbar,
   userSection: {
@@ -39,13 +43,19 @@ const useStyles = styled((theme) => ({
     justifyContent: 'space-between',
     paddingRight: theme.spacing(2),
   },
+  chartContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start', // Align to the left
+    padding: theme.spacing(3), // Align to the left
+  },
 }));
 
 const Dashboard = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root} style={{backgroundColor:'#1E272E'}}>
+    <div className={classes.root} style={{ backgroundColor: '#1E272E' }}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.userSection}>
@@ -64,9 +74,19 @@ const Dashboard = () => {
       <MiniDrawer />
       <Container component="main" className={classes.content}>
         <div className={classes.toolbar} />
-        <DashboardBox/>
-        {/* <DonutChart/> */}
-        {/* <ChallengeProgress progress={60} /> */}
+        <div className={classes.chartContainer}>
+          <DashboardBox />
+          <div style={{ display: 'flex' }}>
+            <App style={{ alignItems: 'flex-start' }} />
+            <CarbonFootprintBarChart style={{ alignItems: 'flex-end' }} />
+          </div>
+          <div style={{ display: 'flex' }}>
+            <ProgressChart style={{ alignItems: 'flex-start' }} />
+            <DoubleBarChart style={{ alignItems: 'flex-end' }} />
+          </div>
+
+
+        </div>
       </Container>
     </div>
   );

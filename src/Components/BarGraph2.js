@@ -57,8 +57,8 @@ export const DoubleBarChart = () => {
       <ResponsiveContainer width="100%" height="80%" style={{ marginRight: '3rem' }}>
         <BarChart data={doubleBarChartData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" style={{ color: '#ffffff' }} />
-          <YAxis />
+          <XAxis dataKey="month" tick={{ fill: '#ffffff' }}/>
+          <YAxis tick={{ fill: '#ffffff' }}/>
           <Tooltip />
           <Bar dataKey="year2022" fill="#826ACA" barSize={20} />
           <Bar dataKey="year2023" fill="#FFE8FF" barSize={20} />

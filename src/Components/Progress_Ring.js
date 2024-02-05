@@ -46,11 +46,11 @@ export const ProgressChart = () => {
       >
         Task Progress Chart
       </Typography>
-      <ResponsiveContainer width="100%" height="80%">
-        <LineChart data={data}>
+      <ResponsiveContainer width="100%" height="80%" style={{marginRight:'2.8rem'}}>
+        <LineChart data={data} >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="name" tick={{fill:"#eeee"}}/>
+          <YAxis tick={{fill:"#eeee"}}/>
           <Tooltip />
           <Line
             type="monotone"

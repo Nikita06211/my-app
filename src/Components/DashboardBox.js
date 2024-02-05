@@ -37,8 +37,8 @@ const DashboardBox = () => {
           <Typography variant="subtitle2" gutterBottom style={{color:'#CDCDCD'}}>
             {box.heading}
           </Typography>
-          <Typography variant="h6" style={{color:'#CDCDCD'}}>{box.value}</Typography>
-          <Typography variant="caption" style={{color:'#CDCDCD'}}>{box.percentage}</Typography>
+          <Typography variant="h6" style={{color:'#CDCDCD', fontWeight:'bold',fontSize:'1rem'}}>{box.value}</Typography>
+          <Typography variant="caption" style={{color:'#CDCDCD', fontWeight:'bold', fontSize:'1rem'}}>{box.percentage}</Typography>
         </BoxContainer>
       ))}
     </div>

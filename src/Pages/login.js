@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, TextField, Button, Grid, Link } from '@mui/material';
 import { FaGoogle } from 'react-icons/fa';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../Components/firebase'; // Assuming you have Firebase initialized in firebase.js
 import Dashboard from './Dashboard'; // Import the Dashboard component
 
@@ -24,18 +24,30 @@ const Login = () => {
         }
     };
 
+    const handleGoogleLogin = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const userCredential = await signInWithPopup(auth, provider);
+            // User logged in successfully with Google
+            setUser(userCredential.user);
+        } catch (error) {
+            setError(error.message);
+            console.error('Error logging in with Google:', error.message);
+        }
+    };
+
     if (user) {
         // If user is logged in, render the Dashboard component
         return <Dashboard user={user} />;
     }
 
     return (
-        <Grid container justifyContent="center" alignItems="center" height="100vh" >
+        <Grid container justifyContent="center" alignItems="center" height="100vh">
             <Card style={{ maxWidth: 400, maxHeight: 700 }}>
-                <CardContent style={{ position: 'relative', padding:'0 0'}}>
+                <CardContent style={{ position: 'relative', padding: '0 0' }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Typography variant="h5" align="left" style={{ margin: '1rem 1rem', alignSelf: 'flex-start', fontFamily: 'unset', fontWeight: '600' }}>
-                            <span style={{ borderBottom: '3px solid black', paddingBottom:'0'}}>Login</span>
+                            <span style={{ borderBottom: '3px solid black', paddingBottom: '0' }}>Login</span>
                         </Typography>
                         <Grid
                             container
@@ -50,7 +62,7 @@ const Login = () => {
                             />
                         </Grid>
                     </div>
-                    <form style={{padding:'0.7rem 1.5rem'}} onSubmit={handleLogin}>
+                    <form style={{ padding: '0.7rem 1.5rem' }} onSubmit={handleLogin}>
                         <TextField
                             label="Email"
                             type="email"
@@ -74,15 +86,16 @@ const Login = () => {
                             Login
                         </Button>
                     </form>
-                    <Typography variant="body2" align="center" style={{ marginBottom:'0.5rem' }}>
+                    <Typography variant="body2" align="center" style={{ marginBottom: '0.5rem' }}>
                         or
                     </Typography>
                     <Button
-                        style={{marginLeft:'1.4rem', marginRight:'1.5rem', width:'90%'}}
+                        style={{ marginLeft: '1.4rem', marginRight: '1.5rem', width: '90%' }}
                         variant="outlined"
                         color="primary"
                         fullWidth
                         startIcon={<FaGoogle />}
+                        onClick={handleGoogleLogin} // Call handleGoogleLogin on button click
                     >
                         Login with Google
                     </Button>

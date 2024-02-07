@@ -2,8 +2,9 @@ import React from 'react';
 import { Container, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FeaturesCarousel } from './Carousel';
 import { Avatar } from '@mui/material';
+import Footer from '../Components/Footer';
 
-export const Home = () => {
+const Home = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -46,10 +47,13 @@ export const Home = () => {
                         />
                     </Grid>
                 </Grid>
+
+                {/* Features Carousel */}
                 <Grid item xs={12} container spacing={3}>
                     <FeaturesCarousel />
                 </Grid>
 
+                {/* Our Vision Section */}
                 <Grid item xs={12} container spacing={3} style={{ marginBottom: '2rem' }}  id="visionSection">
                     <Grid item xs={12}>
                         <Typography variant="h2" gutterBottom align="center" style={{ color: '#82A80B', fontFamily: 'poppins', textShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)', fontWeight: 'bold' }}>
@@ -77,8 +81,9 @@ export const Home = () => {
                             Eco-Pulse Carbon Credit Award enhances sustainability and promoting a greener world.
                         </Typography>
                     </Grid>
-
                 </Grid>
+
+                {/* How We Work Section */}
                 <Grid item xs={12} container spacing={3} style={{ marginBottom: '0', backgroundColor: '#273643' }}>
                     <Grid item xs={12}>
                         <Typography variant="h2" gutterBottom align="center" style={{ color: '#82A80B', fontFamily: 'poppins', textShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)', fontWeight: 'bold' }}>
@@ -93,7 +98,12 @@ export const Home = () => {
                         />
                     </Grid>
                 </Grid>
+
+                {/* Footer Component */}
+                <Footer />
             </Grid>
         </Container>
     );
 };
+
+export { Home };

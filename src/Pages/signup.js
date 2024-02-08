@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, TextField, Button, Grid, Link } from '@mui/material';
 import { FaGoogle } from 'react-icons/fa';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Components/firebase'; // Assuming you have Firebase initialized in firebase.js
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../Components/firebase';
 
 export const Signup = () => {
     const [email, setEmail] = useState('');
@@ -14,7 +14,6 @@ export const Signup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
 
-        // Client-side form validation
         if (!email || !password || !confirmPassword) {
             setError('Please fill in all fields.');
             return;
@@ -27,16 +26,26 @@ export const Signup = () => {
 
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            // User signed up successfully
             const user = userCredential.user;
             setSuccessMessage('Sign up successful! You can now log in.');
-            // Clear form fields
             setEmail('');
             setPassword('');
             setConfirmPassword('');
         } catch (error) {
             setError(error.message);
             console.error('Error signing up:', error.message);
+        }
+    };
+
+    const handleGoogleSignup = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const userCredential = await signInWithPopup(auth, provider);
+            const user = userCredential.user;
+            setSuccessMessage('Sign up successful! You can now log in.');
+        } catch (error) {
+            setError(error.message);
+            console.error('Error signing up with Google:', error.message);
         }
     };
 
@@ -48,7 +57,6 @@ export const Signup = () => {
                         <Typography variant="h5" align="left" style={{ margin: '1rem 1rem', alignSelf: 'flex-start', fontFamily: 'unset', fontWeight: '600' }}>
                             <span style={{ borderBottom: '3px solid black', paddingBottom: '0' }}>Register</span>
                         </Typography>
-                        {/* Insert image grid similar to the Login component */}
                         <Grid
                             container
                             direction="row"
@@ -101,6 +109,7 @@ export const Signup = () => {
                         or
                     </Typography>
                     <Button
+                        onClick={handleGoogleSignup}
                         style={{ marginLeft: '1.4rem', marginRight: '1.5rem', width: '90%' }}
                         variant="outlined"
                         color="primary"

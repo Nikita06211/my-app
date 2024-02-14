@@ -8,6 +8,8 @@ import { Login } from './Pages/login';
 import { Signup } from './Pages/signup';
 import Dashboard from './Pages/Dashboard';
 import { useEffect } from 'react';
+import { Profile } from './Pages/Profile/profile';
+import { Challenges } from './Pages/Challenges/challenge';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/challenge' element={<Challenges />} />
         </Routes>
       </Router>
     </div>

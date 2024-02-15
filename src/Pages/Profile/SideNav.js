@@ -48,11 +48,11 @@ export function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {[
-          { text: 'Home', icon: <HomeIcon /> },
-          { text: 'Profile', icon: <PersonIcon /> },
-          { text: 'Dashboard', icon: <DashboardIcon /> },
-          { text: 'Settings', icon: <SettingsIcon /> },
-          { text: 'Leaderboard', icon: <LeaderboardIcon /> }
+          { text: 'Home', icon: <HomeIcon />, path:'/' },
+          { text: 'Profile', icon: <PersonIcon />, path:'/profile' },
+          { text: 'Dashboard', icon: <DashboardIcon />, path:'/dashboard' },
+          { text: 'Settings', icon: <SettingsIcon />, path:'/profile' },
+          { text: 'Leaderboard', icon: <LeaderboardIcon /> , path:'/challenge'}
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton>
@@ -79,7 +79,7 @@ export function ResponsiveDrawer(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ backgroundColor: 'white' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"

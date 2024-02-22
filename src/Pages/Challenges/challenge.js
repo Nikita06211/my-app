@@ -3,18 +3,22 @@ import { ChallengesContent } from './ChallengesContent';
 import { Timeline } from './Timeline';
 import { Grid } from "@mui/material";
 
+import './challenge.css';
+
 export const Challenges = () => {
     return (
-        <div>
-            <ResponsiveDrawer />
-            <Grid container spacing={2} columns={16}>
-                <Grid item xs={8}>
+        <div className="container">
+            <div className="drawer">
+                <ResponsiveDrawer />
+            </div>
+            
+            <div className="challenge">
                 <ChallengesContent/>
-                </Grid>
-                <Grid item xs={8}>
-                    <Timeline/>
-                </Grid>
-            </Grid>
+            </div>
+            
+            <div className="timeline">
+                <Timeline/>
+            </div>
         </div>
     )
 }

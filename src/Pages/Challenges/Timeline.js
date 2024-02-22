@@ -20,7 +20,7 @@ export const Timeline = () => {
   ];
 
   return (
-    <Paper sx={{ width: '50%', padding: 2, textAlign: 'left', margin: 'auto', marginRight: '2rem', marginTop:'2rem', paddingBottom:'2rem' }}>
+    <Paper sx={{ width: '25%', padding: 2, textAlign: 'left', position: 'fixed', right: 0, margin: '2rem', marginTop:'2rem', paddingBottom:'2rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <div>
           <Typography variant="h6" align="left">Timeline</Typography>

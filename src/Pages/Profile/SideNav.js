@@ -19,6 +19,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -47,22 +48,23 @@ export function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-        {[
-          { text: 'Home', icon: <HomeIcon />, path:'/' },
-          { text: 'Profile', icon: <PersonIcon />, path:'/profile' },
-          { text: 'Dashboard', icon: <DashboardIcon />, path:'/dashboard' },
-          { text: 'Settings', icon: <SettingsIcon />, path:'/profile' },
-          { text: 'Leaderboard', icon: <LeaderboardIcon /> , path:'/challenge'}
-        ].map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+      {[
+        { text: 'Home', icon: <HomeIcon />, path: '/' },
+        { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
+        { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
+        { text: 'Settings', icon: <SettingsIcon />, path: '/profile' },
+        { text: 'Leaderboard', icon: <LeaderboardIcon />, path: '/challenge' }
+      ].map((item) => (
+        <ListItem key={item.text} disablePadding>
+          <ListItemButton component={Link} to={item.path}>
+            <ListItemIcon>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+
       </List>
     </div>
   );
@@ -79,7 +81,7 @@ export function ResponsiveDrawer(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar sx={{ backgroundColor: 'white' }}>
+        {/* <Toolbar sx={{ backgroundColor: 'white' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -90,9 +92,9 @@ export function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Responsive drawer 
           </Typography>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
       <Box
         component="nav"
